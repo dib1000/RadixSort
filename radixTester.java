@@ -45,17 +45,40 @@ public class radixTester {
     System.out.println();
 
     System.out.println("TESTING SortableLinkedList merge");
-      SortableLinkedList x = new SortableLinkedList();
-      SortableLinkedList y = new SortableLinkedList();
-      SortableLinkedList z = new SortableLinkedList();
-      for(int i = 0; i<10; i++) {
-        z.add(i);
-      }
-      SortableLinkedList a = new SortableLinkedList();
-      for(int i = 2; i<64; i+=2) {
-        a.add(i);
-      }
-      SortableLinkedList[] yza = {y,z,a};
-      Radix.merge(x,yza);
+    SortableLinkedList x = new SortableLinkedList();
+    SortableLinkedList y = new SortableLinkedList();
+    SortableLinkedList z = new SortableLinkedList();
+    for(int i = 0; i<10; i++) {
+      z.add(i);
+    }
+    SortableLinkedList a = new SortableLinkedList();
+    for(int i = 2; i<64; i+=2) {
+      a.add(i);
+    }
+    SortableLinkedList[] yza = {z,y,a};
+    Radix.merge(x,yza);
+    System.out.println();
+    Radix.clear(x);
+
+
+    System.out.println("Testing sort");
+    SortableLinkedList one = new SortableLinkedList();
+    one.add(329);
+    one.add(457);
+    one.add(657);
+    one.add(839);
+    one.add(436);
+    one.add(720);
+    one.add(355);
+    SortableLinkedList two = new SortableLinkedList();
+    two.add(12); two.add(34); two.add(42); two.add(32);
+    two.add(44); two.add(41); two.add(34); two.add(11);
+    two.add(32); two.add(23); two.add(87); two.add(50);
+    two.add(77); two.add(58); two.add(8);  two.add(5);
+    System.out.println(Radix.mostDigits(one));
+    System.out.println(Radix.mostDigits(two));
+    Radix.digitSort(one,0);
+    Radix.radixSortSimple(one);
+    Radix.radixSortSimple(two);
   }
 }
