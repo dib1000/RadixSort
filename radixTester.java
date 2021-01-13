@@ -16,5 +16,32 @@ public class radixTester {
     System.out.println(Radix.length(5112));
     System.out.println(Radix.length(350));
     System.out.println(Radix.length(750));
+    System.out.println();
+
+    System.out.println("Testing merge");
+    MyLinkedList empty = new MyLinkedList();
+    for(int i = 0; i<4; i++) {
+      empty.add("r");
+    }
+    MyLinkedList empty2 = new MyLinkedList();
+    MyLinkedList nums = new MyLinkedList();
+    for(int i = 0; i<10; i++) {
+      nums.add(""+i);
+    }
+    MyLinkedList tens = new MyLinkedList();
+    for(int i = 10; i<20; i++) {
+      tens.add(""+i);
+    }
+    MyLinkedList twix = new MyLinkedList();
+    for(int i = 0; i<5; i++) {
+      twix.add("xXx");
+    }
+    MyLinkedList hA = new MyLinkedList();
+    for(int i = 0; i<4; i++) {
+      hA.add("J");
+    }
+    MyLinkedList[] stors = {empty2,nums,tens,twix,hA};
+    //Radix.merge(empty,stors);
+    Radix.merge(empty,stors);
   }
 }
