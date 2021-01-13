@@ -52,7 +52,29 @@ public class Radix {
      SortableLinkedList[] buckets = digitSort(data,i);
      clear(data);
      merge(data,buckets);
+   }
+  }
+
+  public static void radixSort(SortableLinkedList data) {
+    SortableLinkedList negatives = new SortableLinkedList();
+    SortableLinkedList positives = new SortableLinkedList();
+    for(int i = 0; i<data.size();i++) {
+      if(data.get(i)<0) {
+        negatives.add(data.get(i));
+      }
+      else {
+        positives.add(data.get(i));
+      }
     }
-    System.out.println(data.toString());
+    radixSortSimple(negatives);
+    radixSortSimple(positives);
+    for(int n = 0; n<negatives.size()/2; n++) {
+      int storage =  negatives.get(n);
+      negatives.set(n, negatives.get(negatives.size()-n-1));
+      negatives.set(negatives.size()-n-1,storage);
+    }
+    negatives.extend(positives);
+    clear(data);
+    data.extend(negatives);
   }
 }

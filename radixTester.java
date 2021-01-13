@@ -80,5 +80,13 @@ public class radixTester {
     Radix.digitSort(one,0);
     Radix.radixSortSimple(one);
     Radix.radixSortSimple(two);
+    SortableLinkedList negs = new SortableLinkedList();
+    negs.add(10); negs.add(-10);
+    negs.add(52); negs.add(-52);
+    negs.add(5);  negs.add(-5);
+    negs.add(209); negs.add(-209);
+    negs.add(19);  negs.add(-19);
+    negs.add(44); negs.add(-44);
+    Radix.radixSort(negs);
   }
 }
