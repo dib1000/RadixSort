@@ -42,6 +42,20 @@ public class radixTester {
     }
     MyLinkedList[] stors = {empty2,nums,tens,twix,hA};
     //Radix.merge(empty,stors);
-    Radix.merge(empty,stors);
+    System.out.println();
+
+    System.out.println("TESTING SortableLinkedList merge");
+      SortableLinkedList x = new SortableLinkedList();
+      SortableLinkedList y = new SortableLinkedList();
+      SortableLinkedList z = new SortableLinkedList();
+      for(int i = 0; i<10; i++) {
+        z.add(i);
+      }
+      SortableLinkedList a = new SortableLinkedList();
+      for(int i = 2; i<64; i+=2) {
+        a.add(i);
+      }
+      SortableLinkedList[] yza = {y,z,a};
+      Radix.merge(x,yza);
   }
 }
