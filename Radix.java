@@ -16,54 +16,53 @@ public class Radix {
     }
   }
 
-  public static int mostDigits(SortableLinkedList data) {
-    int digit = 0;
-    for(int i = 0; i<data.size(); i++) {
-      if(length(data.get(i))>digit) {
-        digit = length(data.get(i));
-      }
-    }
-    return digit;
-  }
-
-  public static void clear(SortableLinkedList s) {
-    int length = s.size();
+  public static int largestDigit(SortableLinkedList data) {
+    SortableLinkedList storage = new SortableLinkedList();
+    int length = data.size();
+    int largest = 0;
     for(int i = 0; i<length; i++) {
-      s.remove(0);
+      if(length(data.get(0))>largest) {
+        largest = length(data.get(0));
+      }
+      storage.add(data.remove(0));
     }
+    data.extend(storage);
+    return largest;
   }
 
-  public static SortableLinkedList[] digitSort(SortableLinkedList data, int col) {
-    SortableLinkedList[] buckets = new SortableLinkedList[10];
-    for(int i = 0; i<buckets.length; i++) {
-      buckets[i] = new SortableLinkedList();
-    }
-    for(int i = 0; i<data.size(); i++) {
-      int number = nth(data.get(i),col);
+  public static SortableLinkedList[] digitSort(SortableLinkedList data, int col,SortableLinkedList[]buckets) {
+    int length = data.size();
+    for(int i = 0; i<length; i++) {
+      int number = nth(data.get(0),col);
       SortableLinkedList bucket = buckets[number];
-      bucket.add(data.get(i));
+      bucket.add(data.remove(0));
     }
     return buckets;
   }
 
   public static void radixSortSimple(SortableLinkedList data) {
-    int digit = mostDigits(data);
-    for(int i = 0; i<digit; i++) {
-     SortableLinkedList[] buckets = digitSort(data,i);
-     clear(data);
-     merge(data,buckets);
-   }
+    SortableLinkedList[] buckets = new SortableLinkedList[10];
+    int length = data.size();
+    int largest = largestDigit(data);
+    for(int i = 0; i<buckets.length; i++) {
+      buckets[i] = new SortableLinkedList();
+    }
+    for(int n = 0; n<largest; n++) {
+      digitSort(data,n,buckets);
+      merge(data,buckets);
+    }
+    //System.out.println(data.toString());
   }
 
   public static void radixSort(SortableLinkedList data) {
     SortableLinkedList negatives = new SortableLinkedList();
     SortableLinkedList positives = new SortableLinkedList();
     for(int i = 0; i<data.size();i++) {
-      if(data.get(i)<0) {
-        negatives.add(data.get(i));
+      if(data.get(0)<0) {
+        negatives.add(data.remove(0));
       }
       else {
-        positives.add(data.get(i));
+        positives.add(data.remove(0));
       }
     }
     radixSortSimple(negatives);
@@ -74,7 +73,7 @@ public class Radix {
       negatives.set(negatives.size()-n-1,storage);
     }
     negatives.extend(positives);
-    clear(data);
     data.extend(negatives);
+    System.out.println(data);
   }
 }

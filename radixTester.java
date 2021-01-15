@@ -58,7 +58,7 @@ public class radixTester {
     SortableLinkedList[] yza = {z,y,a};
     Radix.merge(x,yza);
     System.out.println();
-    Radix.clear(x);
+    //Radix.clear(x);
 
 
     System.out.println("Testing sort");
@@ -75,9 +75,9 @@ public class radixTester {
     two.add(44); two.add(41); two.add(34); two.add(11);
     two.add(32); two.add(23); two.add(87); two.add(50);
     two.add(77); two.add(58); two.add(8);  two.add(5);
-    System.out.println(Radix.mostDigits(one));
-    System.out.println(Radix.mostDigits(two));
-    Radix.digitSort(one,0);
+    //System.out.println(Radix.mostDigits(one));
+    //System.out.println(Radix.mostDigits(two));
+//Radix.digitSort(one,1);
     Radix.radixSortSimple(one);
     Radix.radixSortSimple(two);
     SortableLinkedList negs = new SortableLinkedList();
