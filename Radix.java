@@ -51,13 +51,13 @@ public class Radix {
       digitSort(data,n,buckets);
       merge(data,buckets);
     }
-    //System.out.println(data.toString());
   }
 
   public static void radixSort(SortableLinkedList data) {
     SortableLinkedList negatives = new SortableLinkedList();
     SortableLinkedList positives = new SortableLinkedList();
-    for(int i = 0; i<data.size();i++) {
+    int length = data.size();
+    for(int i = 0; i<length;i++) {
       if(data.get(0)<0) {
         negatives.add(data.remove(0));
       }
@@ -67,13 +67,11 @@ public class Radix {
     }
     radixSortSimple(negatives);
     radixSortSimple(positives);
-    for(int n = 0; n<negatives.size()/2; n++) {
-      int storage =  negatives.get(n);
-      negatives.set(n, negatives.get(negatives.size()-n-1));
-      negatives.set(negatives.size()-n-1,storage);
+    int negLength = negatives.size();
+    for(int n = 0; n<negLength; n++) {
+      data.add(negatives.remove(negatives.size()-1));
     }
-    negatives.extend(positives);
-    data.extend(negatives);
+    data.extend(positives);
     System.out.println(data);
   }
 }
