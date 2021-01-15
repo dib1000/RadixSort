@@ -72,6 +72,5 @@ public class Radix {
       data.add(negatives.remove(negatives.size()-1));
     }
     data.extend(positives);
-    System.out.println(data);
   }
 }
